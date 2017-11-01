@@ -2,6 +2,8 @@
 Crawler to get Brazilian Federal Deputies
 
 [![Build Status](https://travis-ci.org/alairjt/CrawlerNode.svg?branch=master)](https://travis-ci.org/alairjt/CrawlerNode)
+[] https://img.shields.io/coveralls/alairjt/CrawlerNode/master.svg?style=flat-square
+[![codecov.io](https://codecov.io/gh/alairjt/CrawlerNode/coverage.svg?branch=master)](https://codecov.io/gh/alairjt/CrawlerNode?branch=master)
 
 ## How to run the sample?
 
