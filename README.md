@@ -1,8 +1,12 @@
 # CrawlerNode
 Crawler to get Brazilian Federal Deputies
 
-# DEV
+[![Build Status](https://travis-ci.org/alairjt/CrawlerNode.svg?branch=master)](https://travis-ci.org/alairjt/CrawlerNode)
+
+## How to run the sample?
 
 npm install -g gulp gulp-cli
 
-npm intall
+npm install
+
+npm run serve
