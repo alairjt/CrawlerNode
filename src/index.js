@@ -26,7 +26,11 @@ request(getOptions(), (error, response, body) => {
     });
 
     deputies.filter((deputy, index) => index < PROCESS_LIMIT).forEach((deputy) => {
-        request(getOptionsInfo(deputy.id), (error, response, bodyInfo) => {
+        request(getOptionsInfo(deputy.id), (errorInfo, response, bodyInfo) => {
+            if (error) {
+                console.log('error:', errorInfo);
+                return;
+            }
             //Error processing CSS in JSDOM
             //https://github.com/tmpvar/jsdom/issues/2005
             //https://github.com/tmpvar/jsdom/issues/1995
