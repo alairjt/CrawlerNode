@@ -96,7 +96,7 @@ class DeputyCrawler {
         return r;
     }    
 
-    checkInfoType(info, label) {
+    checkInfoType(info) {
         let checkTypes = [{
                 regex: /jpg/g,
                 field: 'urlProfileImage'
