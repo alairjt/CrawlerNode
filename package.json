@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint src/ test/",
     "mocha": "mocha -R spec -t 5000",
-    "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js --verbose",
     "docs": "jsdoc -c jsdoc.json",
     "serve": "node src/index.js"
   },
