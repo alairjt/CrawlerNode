@@ -3,10 +3,11 @@ sudo: true
 node_js:
   - "8.4"
 install:
-  - npm install -g gulp gulp-cli 
+  - npm install -g gulp gulp-cli codecov
   - npm install
 script:
   - npm test
+  - codecov --token=$CODECOV_TOKEN
 notifications:
   email:
     on_success: never
