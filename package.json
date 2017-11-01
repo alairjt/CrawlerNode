@@ -1,0 +1,29 @@
+{
+  "name": "crawlernode",
+  "version": "1.0.0",
+  "description": "Crawler to get Brazilian Federal Deputies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alairjt/CrawlerNode.git"
+  },
+  "keywords": [
+    "crawler",
+    "node",
+    "federal",
+    "deputies"
+  ],
+  "author": "Alair J Tavares",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alairjt/CrawlerNode/issues"
+  },
+  "homepage": "https://github.com/alairjt/CrawlerNode#readme",
+  "dependencies": {
+    "jsdom": "^11.3.0",
+    "request": "^2.83.0"
+  }
+}
