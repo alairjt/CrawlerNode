@@ -25,9 +25,6 @@ request(getOptions(), (error, response, body) => {
         return {id: id, name: option.text};
     });
 
-    // console.log(deputies);
-    // deputies = [{id: 178957}];
-
     deputies.filter((deputy, index) => index < PROCESS_LIMIT).forEach((deputy) => {
         request(getOptionsInfo(deputy.id), (error, response, bodyInfo) => {
             //Error processing CSS in JSDOM
@@ -49,24 +46,6 @@ request(getOptions(), (error, response, body) => {
         });
     });
 });
-
-function getOptionsInfo(id) {
-    let url = 'http://www.camara.leg.br/internet/Deputado/dep_Detalhe.asp?id={0}'.replace('{0}', id);
-    return getRequestOptions(url);
-}
-
-function getOptions() {
-    return getRequestOptions('http://www2.camara.leg.br/deputados/pesquisa');
-}
-
-function getRequestOptions(url) {
-    return {
-        url: url,
-        headers: {
-            'User-Agent': 'Chrome/61.0.3163.100'
-        }
-    };
-}
 
 function parseDeputyInfo(info) {
     let a = info.getElementsByTagName('a')[0] || {};
@@ -147,4 +126,22 @@ function checkInfoType(info, label) {
     return checkTypes.filter((ck) => ck.regex.test(info)).map((ck) => {
         return {field: ck.field, value: info};
     });
+}
+
+function getOptionsInfo(id) {
+    let url = 'http://www.camara.leg.br/internet/Deputado/dep_Detalhe.asp?id={0}'.replace('{0}', id);
+    return getRequestOptions(url);
+}
+
+function getOptions() {
+    return getRequestOptions('http://www2.camara.leg.br/deputados/pesquisa');
+}
+
+function getRequestOptions(url) {
+    return {
+        url: url,
+        headers: {
+            'User-Agent': 'Chrome/61.0.3163.100'
+        }
+    };
 }
