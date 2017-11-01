@@ -5,3 +5,4 @@ Crawler to get Brazilian Federal Deputies
 
 npm install -g gulp gulp-cli
 
+npm intall
