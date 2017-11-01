@@ -4,7 +4,11 @@
   "description": "Crawler to get Brazilian Federal Deputies",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha"
+    "lint": "eslint src/ test/",
+    "mocha": "mocha -R spec -t 5000",
+    "test": "istanbul cover mocha && codecov",
+    "docs": "jsdoc -c jsdoc.json",
+    "serve": "node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +20,7 @@
     "federal",
     "deputies"
   ],
-  "author": "Alair J Tavares",
+  "author": "Alair J Tavares <alairjt@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/alairjt/CrawlerNode/issues"
@@ -27,6 +31,10 @@
     "request": "^2.83.0"
   },
   "devDependencies": {
-    "mocha": "^4.0.1"
+    "mocha": "^4.0.1",
+    "eslint": "^2.0.0",
+    "jsdoc": "^3.4.0",
+    "istanbul": "^0.3.2",
+    "codecov": "^1.0.0"
   }
 }

@@ -1,8 +1,8 @@
-const assert = require('assert');
-const request = require('request');
-const { JSDOM, VirtualConsole } = require('jsdom');
-const vc = new VirtualConsole();
-const { DeputyCrawler } = require('../src/deputy');
+var assert = require('assert');
+var request = require('request');
+var { JSDOM, VirtualConsole } = require('jsdom');
+var vc = new VirtualConsole();
+var { DeputyCrawler } = require('../src/deputy');
 
 describe('Deputy Crawler', () => {
     var crawler;
