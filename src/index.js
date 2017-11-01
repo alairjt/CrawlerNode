@@ -5,7 +5,7 @@ const { JSDOM, VirtualConsole } = require('jsdom');
 const vc = new VirtualConsole();
 const PROCESS_LIMIT = 30;
 
-const { DeputyCrawler } = require('../src/deputy');
+const { DeputyCrawler } = require('./deputy');
 
 try {
     let crawler = new DeputyCrawler(request, JSDOM, vc, PROCESS_LIMIT);
