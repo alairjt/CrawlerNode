@@ -39,4 +39,25 @@ describe('Deputy Crawler', () => {
         assert.equal(a[0].value, 'Nome civil: ABEL SALVADOR MESQUITA JUNIOR');
         assert.equal(a.length, 1);
     });
+
+    it('should be check birthday info from body', () => {
+        let a = crawler.checkInfoType('Aniversário: 29 / 3');
+        assert.equal(a[0].field, 'birthday');
+        assert.equal(a[0].value, 'Aniversário: 29 / 3');
+        assert.equal(a.length, 1);
+    });
+
+    it('should be check party info from body', () => {
+        let a = crawler.checkInfoType('Partido/UF: DEM / RR / Titular');
+        assert.equal(a[0].field, 'party');
+        assert.equal(a[0].value, 'Partido/UF: DEM / RR / Titular');
+        assert.equal(a.length, 2);
+    });
+
+    it('should be check phone info from body', () => {
+        let a = crawler.checkInfoType('Telefone: (61) 3215-5248 - Fax: 3215-2248');
+        assert.equal(a[0].field, 'phone');
+        assert.equal(a[0].value, 'Telefone: (61) 3215-5248 - Fax: 3215-2248');
+        assert.equal(a.length, 1);
+    });
 });
