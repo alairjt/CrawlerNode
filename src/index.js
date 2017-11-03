@@ -3,7 +3,7 @@
 const request = require('request');
 const { JSDOM, VirtualConsole } = require('jsdom');
 const vc = new VirtualConsole();
-const PROCESS_LIMIT = 30;
+const PROCESS_LIMIT = 10;
 
 const { DeputyCrawler } = require('./deputy');
 

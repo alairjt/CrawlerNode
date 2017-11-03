@@ -8,7 +8,7 @@
     "mocha": "mocha -R spec -t 5000",
     "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js --verbose",
     "docs": "jsdoc -c jsdoc.json",
-    "serve": "node src/index.js"
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
