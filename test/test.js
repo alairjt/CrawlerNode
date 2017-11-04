@@ -109,4 +109,97 @@ describe('Deputy Crawler', () => {
         assert.equal(infoType.length, 1);
         assert.equal(infoType[0].value, 'JOSE ADAIL CARNEIRO SILVA');
     });
+
+    it('should be check url contact info from body', () => {
+        let infoMock = {
+            getElementsByTagName: (a) => [],
+            src: 'http://fale-conosco.com'
+        };
+        
+        let infoType = crawler.parseDeputyInfo(infoMock);
+
+        assert.equal(infoType.length, 1);
+        assert.equal(infoType[0].value, 'http://fale-conosco.com');
+        assert.equal(infoType[0].field, 'urlContact');
+    });
+
+    it('should be parse deputy info - birthday', () => {
+        let infoMock = {
+            getElementsByTagName: (a) => [],
+            textContent: 'Aniversário: 19 / 11'
+        };
+        
+        let infoType = crawler.parseDeputyInfo(infoMock);
+
+        assert.equal(infoType.length, 1);
+        assert.equal(infoType[0].value, '19 / 11');
+        assert.equal(infoType[0].field, 'birthday');
+    });
+
+    it('should be parse deputy info - party and state', () => {
+        let infoMock = {
+            getElementsByTagName: (a) => [],
+            textContent: 'Partido/UF: PP / CE / Titular'
+        };
+        
+        let infoType = crawler.parseDeputyInfo(infoMock);
+
+        assert.equal(infoType.length, 2);
+        assert.equal(infoType[0].value, 'PP');
+        assert.equal(infoType[0].field, 'party');
+        assert.equal(infoType[1].value, 'CE');
+        assert.equal(infoType[1].field, 'state');
+    });
+
+    it('should be parse deputy info - phone', () => {
+        let infoMock = {
+            getElementsByTagName: (a) => [],
+            textContent: 'Telefone: (61) 3215-5335 - Fax: 3215-2335'
+        };
+        
+        let infoType = crawler.parseDeputyInfo(infoMock);
+
+        assert.equal(infoType.length, 1);
+        assert.equal(infoType[0].value, '(61) 3215-5335');
+        assert.equal(infoType[0].field, 'phone');
+    });
+
+    it('should be parse deputy info - legislatures', () => {
+        let infoMock = {
+            getElementsByTagName: (a) => [],
+            textContent: 'Legislaturas: 15/19'
+        };
+        
+        let infoType = crawler.parseDeputyInfo(infoMock);
+
+        assert.equal(infoType.length, 1);
+        assert.equal(infoType[0].value, '15/19');
+        assert.equal(infoType[0].field, 'legislatures');
+    });
+
+    it('should be parse deputy info - office', () => {
+        let infoMock = {
+            getElementsByTagName: (a) => [],
+            textContent: 'Gabinete: 335 - Anexo: IV'
+        };
+        
+        let infoType = crawler.parseDeputyInfo(infoMock);
+
+        assert.equal(infoType.length, 1);
+        assert.equal(infoType[0].value, '335 - Anexo: IV');
+        assert.equal(infoType[0].field, 'office');
+    });
+
+    it('should be parse deputy info - postalCode', () => {
+        let infoMock = {
+            getElementsByTagName: (a) => [],
+            textContent: 'CEP: 70160-900'
+        };
+        
+        let infoType = crawler.parseDeputyInfo(infoMock);
+
+        assert.equal(infoType.length, 1);
+        assert.equal(infoType[0].value, '70160-900');
+        assert.equal(infoType[0].field, 'postalCode');
+    });
 });
