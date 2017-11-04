@@ -2,13 +2,14 @@
 
 const request = require('request');
 const { JSDOM, VirtualConsole } = require('jsdom');
-const vc = new VirtualConsole();
-const PROCESS_LIMIT = 10;
+const { DeputyCrawler } = require('./deputy/deputy');
+const ApiClient = require('./deputy/deputyApiClient');
 
-const { DeputyCrawler } = require('./deputy');
+const PROCESS_LIMIT = 500;
 
 try {
-    let crawler = new DeputyCrawler(request, JSDOM, vc, PROCESS_LIMIT);
+    let virtualConsole = new VirtualConsole();
+    let crawler = new DeputyCrawler(ApiClient, request, JSDOM, virtualConsole, PROCESS_LIMIT);
     crawler.start();
 } catch (error) {
     console.log(error);

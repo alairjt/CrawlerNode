@@ -11,11 +11,12 @@ const SELECTOR_CONTENT_INFO = '#content .clearedBox > ul > li';
 const DEFAULT_PROCESS_LIMIT = 100;
 
 class DeputyCrawler {
-    constructor(request, jsDom, virtualConsole, processLimit) {
+    constructor(ApiClient, request, jsDom, virtualConsole, processLimit) {
         this.request = request;
         this.jsDom = jsDom;
         this.virtualConsole = virtualConsole;
         this.processLimit = processLimit || DEFAULT_PROCESS_LIMIT;
+        this.ApiClient = new ApiClient(request);
     }
 
     start() {
@@ -66,17 +67,14 @@ class DeputyCrawler {
             return;
         }
 
-        console.log(deputy);
-        //ToDo: check if deputy already exists in the database
-        return;
-        this.request({
-            url: 'http://localhost:3000/deputies',
-            method: 'POST',
-            json: deputy
-        }, (error, response, body) => {
-            if (error) {
-                console.log(error, body);
+        //ToDo: check if deputy already exists
+        this.ApiClient.save(deputy, (error, response, body) => {
+            if (error || response.statusCode !== 200) {
+                console.log('Error: ', deputy.name);
+                return;
             }
+
+            console.log('Success: ', deputy.name);
         });
     }
 
