@@ -64,4 +64,49 @@ describe('Deputy Crawler', () => {
         assert.equal(a[0].value, 'Telefone: (61) 3215-5248 - Fax: 3215-2248');
         assert.equal(a.length, 1);
     });
+
+    it('should be parse deputy info', () => {
+        let infoMock = {
+            getElementsByTagName: (a) => [{href: 'http://mockinfo'}]
+        };
+        
+        let infoType = crawler.parseDeputyInfo(infoMock);
+
+        assert.equal(infoType.length, 0);
+    });
+
+    it('should be parse deputy info - href', () => {
+        let infoMock = {
+            getElementsByTagName: (a) => [{href: 'http://mockinfo/image.jpg'}]
+        };
+        
+        let infoType = crawler.parseDeputyInfo(infoMock);
+
+        assert.equal(infoType.length, 1);
+        assert.equal(infoType[0].value, 'http://mockinfo/image.jpg');
+    });
+
+    it('should be parse deputy info - src', () => {
+        let infoMock = {
+            getElementsByTagName: (a) => [],
+            src: 'http://biografia.com'
+        };
+        
+        let infoType = crawler.parseDeputyInfo(infoMock);
+
+        assert.equal(infoType.length, 1);
+        assert.equal(infoType[0].value, 'http://biografia.com');
+    });
+
+    it('should be parse deputy info - textContent', () => {
+        let infoMock = {
+            getElementsByTagName: (a) => [],
+            textContent: 'Nome civil: JOSE ADAIL CARNEIRO SILVA'
+        };
+        
+        let infoType = crawler.parseDeputyInfo(infoMock);
+
+        assert.equal(infoType.length, 1);
+        assert.equal(infoType[0].value, 'JOSE ADAIL CARNEIRO SILVA');
+    });
 });

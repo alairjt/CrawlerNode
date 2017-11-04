@@ -5,7 +5,7 @@ const { JSDOM, VirtualConsole } = require('jsdom');
 const { DeputyCrawler } = require('./deputy/deputy');
 const ApiClient = require('./deputy/deputyApiClient');
 
-const PROCESS_LIMIT = 500;
+const PROCESS_LIMIT = 100;
 
 try {
     let virtualConsole = new VirtualConsole();
