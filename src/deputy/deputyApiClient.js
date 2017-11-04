@@ -1,7 +1,7 @@
 class DeputyApiClient {
     constructor(request) {
         this.request = request;
-        this.url = process.env.DEPUTIES_API_URL || 'http://localhost:5000/deputies';
+        this.url = process.env.DEPUTIES_API_URL || 'http://localhost:5000/api/deputies';
         console.log('API Url:', this.url);
     }
 
