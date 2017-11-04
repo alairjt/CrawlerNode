@@ -71,11 +71,11 @@ class DeputyCrawler {
         //ToDo: check if deputy already exists
         this.ApiClient.save(deputy, (error, response, body) => {
             if (error || response.statusCode !== HTTP_CODE_SUCCESS) {
-                console.log('Error: ', deputy.name, error, response.statusCode);
+                console.log('Error: ', deputy.name, error);
                 return;
             }
 
-            console.log('Success: ', deputy.name, ' - ', body._id);
+            console.log('Success: ', deputy.name);
         });
     }
 
