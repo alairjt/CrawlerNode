@@ -6,8 +6,10 @@ Crawler to get Brazilian Federal Deputies
 
 ## How to run the sample?
 
-npm install -g gulp gulp-cli
+* Run from source using the following commands:
+    * `npm install -g codecov`
+	* `npm install`
+    * `npm start`
 
-npm install
-
-npm run serve
+* Run tests
+    * `npm test`
