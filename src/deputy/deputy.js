@@ -9,6 +9,7 @@ const SELECTOR_SELECT_OPTIONS = '#deputado option';
 const SELECTOR_CONTENT_IMAGE = '#content .clearedBox > img';
 const SELECTOR_CONTENT_INFO = '#content .clearedBox > ul > li';
 const DEFAULT_PROCESS_LIMIT = 100;
+const HTTP_CODE_SUCCESS = 200;
 
 class DeputyCrawler {
     constructor(ApiClient, request, jsDom, virtualConsole, processLimit) {
@@ -69,7 +70,7 @@ class DeputyCrawler {
 
         //ToDo: check if deputy already exists
         this.ApiClient.save(deputy, (error, response, body) => {
-            if (error || response.statusCode !== 200) {
+            if (error || response.statusCode !== HTTP_CODE_SUCCESS) {
                 console.log('Error: ', deputy.name);
                 return;
             }

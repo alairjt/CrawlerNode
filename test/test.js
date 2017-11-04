@@ -202,4 +202,14 @@ describe('Deputy Crawler', () => {
         assert.equal(infoType[0].value, '70160-900');
         assert.equal(infoType[0].field, 'postalCode');
     });
+
+    it('should be get options', () => {
+        let options = crawler.getOptions();
+
+        assert.equal(options.url, 'http://www2.camara.leg.br/deputados/pesquisa');
+    });
+
+    xit('should be start crawler', () => {
+        crawler.start();
+    });
 });
