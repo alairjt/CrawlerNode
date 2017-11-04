@@ -74,7 +74,7 @@ class DeputyCrawler {
                 return;
             }
 
-            console.log('Success: ', deputy.name);
+            console.log('Success: ', deputy.name, ' - ', body._id);
         });
     }
 
