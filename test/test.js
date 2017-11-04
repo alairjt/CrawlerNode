@@ -2,12 +2,16 @@ var assert = require('assert');
 var request = require('request');
 var { JSDOM, VirtualConsole } = require('jsdom');
 var vc = new VirtualConsole();
-var { DeputyCrawler } = require('../src/deputy');
+var { DeputyCrawler } = require('../src/deputy/deputy');
 
 describe('Deputy Crawler', () => {
     var crawler;
+    var ApiClientMock = function() {
+        this.save = () => {};
+    };
+
     beforeEach(() => {
-        crawler = new DeputyCrawler(request, JSDOM, vc);
+        crawler = new DeputyCrawler(ApiClientMock, request, JSDOM, vc);
     });
 
     it('should be inatilize crawler', () => {
