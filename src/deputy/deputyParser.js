@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * Deputy info parser.
+ */
 const deputyParser = [{
         regex: /jpg/g,
         field: 'urlProfileImage',

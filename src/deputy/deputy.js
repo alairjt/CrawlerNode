@@ -11,7 +11,20 @@ const SELECTOR_CONTENT_INFO = '#content .clearedBox > ul > li';
 const DEFAULT_PROCESS_LIMIT = 100;
 const HTTP_CODE_SUCCESS = 200;
 
+/**
+ * Deputy Crawler
+ * 
+ * Process URL to retrieve info of the Federal Deputies.
+ */
 class DeputyCrawler {
+    /**
+     * @constructor
+     * @param {*} ApiClient API Deputy Client 
+     * @param {*} request Request library
+     * @param {*} jsDom JSDom library
+     * @param {*} virtualConsole Virtual Console from jsdom
+     * @param {*} processLimit Limit of executed processes
+     */
     constructor(ApiClient, request, jsDom, virtualConsole, processLimit) {
         this.request = request;
         this.jsDom = jsDom;
@@ -20,6 +33,9 @@ class DeputyCrawler {
         this.ApiClient = new ApiClient(request);
     }
 
+    /**
+     * Starts the crawler job.
+     */
     start() {
         this.request(this.getOptions(), (error, response, body) => {
             if (error) {
@@ -63,6 +79,11 @@ class DeputyCrawler {
         });
     }
 
+    /**
+     * Persist info in database.
+     * 
+     * @param {*} deputy Deputy entity 
+     */
     persist(deputy) {
         if (!deputy && !deputy.id) {
             return;
@@ -79,6 +100,11 @@ class DeputyCrawler {
         });
     }
 
+    /**
+     * Parse deputy info
+     * @param {*} info Deputy info 
+     * @return Parsed info
+     */
     parseDeputyInfo(info) {
         let link = info.getElementsByTagName('a')[0] || {};
         let infoType = this.checkInfoType(link.href || info.src || info.textContent.trim());
@@ -93,21 +119,40 @@ class DeputyCrawler {
         return infoType;
     }
 
+    /**
+     * Check deputy info
+     * @param {*} info Deputy info 
+     * @return Info to parse
+     */
     checkInfoType(info) {
         return deputyParsers.filter((ck) => ck.regex.test(info)).map((ck) => {
             return { field: ck.field, value: info, parser: ck.parser };
         });
     }
 
+    /**
+     * Get request options to parse Deputy info
+     * @param {number} id Deputy ID
+     * @return request options with deputy info url
+     */
     getOptionsInfo(id) {
         let url = URL_INFO.replace('{0}', id);
         return this.getRequestOptions(url);
     }
 
+    /**
+     * Get request options to parse Deputies list
+     * @return request options with search url
+     */
     getOptions() {
         return this.getRequestOptions(URL_SEARCH);
     }
 
+    /**
+     * Create request options
+     * @param {*} url URL
+     * @return request options
+     */
     getRequestOptions(url) {
         return {
             url: url,

@@ -12,5 +12,8 @@ Crawler to get Brazilian Federal Deputies
 	* `npm install`
     * `npm start`
 
+* Run doc
+    * `gulp doc`
+
 * Run tests
     * `npm test`
